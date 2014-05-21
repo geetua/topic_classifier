@@ -1,0 +1,29 @@
+==================================
+     Topic Classifier
+==================================
+
+This is sample code that implements a nearest centroid classifier 
+The classifier is written following the sklearn paradigm. 
+
+Training data is assumed to be text documents that are made available
+as dictionary objects with attributes: tf, df & ndocs where
+tf = frequency of term in document
+df = # docs the term in occurs in entire corpus
+ndocs = total size of document corpus
+(Assumption is that these documents are indexed in solr so that the 
+term vectors are available easily)
+The training data is a set of class/topic labels and associated exemplar
+documents. 
+
+SolrVectorizer is the estimator used to first transform
+the exemplar document vectors to a sparse matrix of tfidf features
+TopicClassifier is the core classifier implementation: it fits the 
+training data by computing a centroid of the feature vectors. 
+Calling the predict method on the TopicClassifier with test documents 
+results in a topic label with the nearest centroid. 
+
+Example runner script is test_core.py
+
+(Note: you will need numpy, scipy and sklearn libraries installed
+ in addition to python. Tested with numpy 1.7.1, scipy 0.12.0, 
+sklearn 0.10, python 2.6.8)
